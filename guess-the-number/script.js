@@ -1,34 +1,85 @@
-let numberInput = document.getElementById('number');
-let submitButton = document.getElementById('button');
-let resultElement = document.getElementById('result');
+// Global variables
 
-submitButton.addEventListener('click', onButtonClicked);
+const preGameContainer = document.getElementById('pre-game-container');
+const gameContainer = document.getElementById('game-container');
+const postGameContainer = document.getElementById('post-game-container');
 
-let numberToGuess = Math.round(Math.random() * 20);
+const playerInfoForm = document.getElementById('player-info-form');
+const playerInfoNameInput = document.getElementById('player-info-name');
+const playerInfoDifficultyInput = document.getElementById('player-info-difficulty');
 
-function onButtonClicked(event) {
-    guess(numberInput.value, numberToGuess);
+const gameForm = document.getElementById('game-form');
+const gameGuessInput = document.getElementById('game-guess');
+const gameGuessButton = document.getElementById('game-guess-button');
+const gameDescriptionElement = document.getElementById('game-description');
+const gameResultElement = document.getElementById('game-result');
+
+const playAgainButton = document.getElementById('play-again-button');
+
+const game = new GuessTheNumberGame();
+
+
+// Event listeners
+
+playerInfoForm.addEventListener('submit', onPlayerInfoFormSubmitted);
+gameForm.addEventListener('submit', onGameFormSubmitted);
+playAgainButton.addEventListener('click', onPlayAgainClicked);
+
+game.addEventListener('start', onGameStarted);
+game.addEventListener('incorrect-guess', onGameIncorrectGuess);
+game.addEventListener('correct-guess', onGameCorrectGuess);
+
+
+// Init
+
+playerInfoNameInput.focus();
+
+
+// Functions
+
+function onPlayerInfoFormSubmitted(event) {
     event.preventDefault();
+    game.start(playerInfoNameInput.value, playerInfoDifficultyInput.value);
+    gameGuessInput.focus();
 }
 
-function guess(guessedValue, numberToGuess) {
-    let guessedNumber = parseInt(guessedValue);
-    if(isNaN(guessedNumber)) {
-        resultElement.innerHTML = 'Your guess must be a number!';
-        return;
-    }
-    else if(guessedNumber < 0 || guessedNumber > 20) {
-        resultElement.innerHTML = 'The guessed number must be between 0 and 20';
-        return;
-    }
-    
-    if(guessedNumber < numberToGuess) {
-        resultElement.innerHTML = 'You guess is too low';
-        return;
-    } else if(guessedNumber > numberToGuess) {
-        resultElement.innerHTML = 'You guess is too high';
-        return;
-    }
+function onGameFormSubmitted(event) {
+    event.preventDefault();
+    game.guess(gameGuessInput.value);
+}
 
-    resultElement.innerHTML = 'You guessed the correct number!';
+function onPlayAgainClicked(event) {
+    event.preventDefault();
+    game.reset();
+
+    preGameContainer.style.display = '';
+    gameContainer.style.display = 'none';
+    postGameContainer.style.display = 'none';
+
+    playerInfoNameInput.select();
+}
+
+function onGameStarted(game) {
+    gameDescriptionElement.innerHTML = game.getDescription();
+    preGameContainer.style.display = 'none';
+    gameContainer.style.display = '';
+    postGameContainer.style.display = 'none';
+
+    gameGuessInput.value = '';
+    gameGuessInput.disabled = false;
+    gameGuessButton.disabled = false;
+}
+
+function onGameIncorrectGuess(game) {
+    gameResultElement.innerHTML = game.guessMessage;
+    gameGuessInput.select();
+}
+
+function onGameCorrectGuess(game) {
+    gameResultElement.innerHTML = game.guessMessage;
+    gameGuessInput.disabled = true;
+    gameGuessButton.disabled = true;
+
+    postGameContainer.style.display = '';
+    playAgainButton.focus();
 }

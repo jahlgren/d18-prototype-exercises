@@ -7,16 +7,47 @@
     <title>Guess The Number</title>
 </head>
 <body>
+
     <h1>Guess The Number</h1>
-    <p>Guess a number between 0 and 20.</p>
-    <form>
-        <label for="number">Your guess:</label><br>
-        <input type="number" name="number" id="number" placeholder="0">
-        <button type="submit" id="button">Submit</button>
-    </form>
-    <p id="result">
-        
-    </p>
+
+    <!-- Pre game | Player Info -->
+    <div id="pre-game-container">
+        <form id="player-info-form">
+            <p>
+                <label for="player-info-name">Enter your name:</label><br>
+                <input type="text" name="player-info-name" id="player-info-name">
+            </p>
+            <p>
+                <label for="difficulty">Choose your difficulty</label><br>
+                <select name="player-info-difficulty" id="player-info-difficulty">
+                    <option value="10">Easy</option>
+                    <option value="30">Medium</option>
+                    <option value="50">Hard</option>
+                </select>
+            </p>
+            <button type="submit">Start</button>
+        </form>
+    </div>
+
+    <!-- Game -->
+    <div id="game-container" style="display: none">
+        <p id="game-description"></p>
+        <form id="game-form">
+            <label for="game-guess">Your guess:</label><br>
+            <input type="number" name="game-guess" id="game-guess" placeholder="0">
+            <button type="submit" id="game-guess-button">Submit</button>
+        </form>
+        <p id="game-result"></p>
+    </div>
+
+    <!-- Post game -->
+    <div id="post-game-container" style="display: none">
+        <button type="button" id="play-again-button">Play Again</button>
+    </div>
+    
+    <!-- Script imports -->
+    <script src="guess-the-number-game.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>
