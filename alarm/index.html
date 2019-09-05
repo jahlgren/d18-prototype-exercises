@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Alarm</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/form.css">
+</head>
+<body>
+    
+    <div class="wrapper">
+        <form id="form">
+            <h1>Alarm</h1>
+            <p class="input input--has-postfix">
+                <input type="text" class="input__field" id="time-input" value="10" autocomplete="off">
+                <span class="input__postfix">sec</span>
+            </p>
+            <button class="button" type="submit">Start</button>
+        </form>
+
+        <p id="timer-text-element" class="timer-text" style="display: none"></p>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

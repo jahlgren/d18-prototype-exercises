@@ -1,0 +1,65 @@
+.button {
+    padding: 0 2rem;
+    height: 2.25rem;
+    
+    text-align: center;
+    font-size: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    
+    color: white;
+    background-color: #9900ff;
+
+    border: 1px solid transparent;
+    border-radius: 4px;
+
+    outline: none;
+    cursor: pointer;
+}
+
+.input {
+    display: flex;
+}
+
+.input--has-postfix .input__field {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input__field {
+    padding: 0 0.75rem;
+    width: 10rem;
+    height: 2.25rem;
+
+    text-align: center;
+    font-size: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    color: black;
+    background-color: white;
+
+    border: 1px solid rgb(175, 175, 175);
+    border-radius: 4px;
+
+    outline: none;
+}
+
+.input__field:focus {
+    border-color: #9900ff;
+    box-shadow: 0 0 0 2px rgba(153, 0, 255, 0.25);
+}
+
+.input__postfix {
+    display: flex;
+    align-items: center;
+    padding: 0 0.75rem;
+    height: 2.25rem;
+    line-height: 2.25rem;
+
+    border: 1px solid rgb(175, 175, 175);
+    border-left-width: 0;
+    background-color: rgb(225, 225, 225);
+
+    border-radius: 4px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
